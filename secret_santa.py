@@ -1,10 +1,11 @@
 '''
 
-Secret Santa Program (normal)
+Secret Santa Program
 
 By: Monique Cheng
 
 '''
+import re
 import random
 
 sender_address = 'email'
@@ -71,14 +72,17 @@ if(option == 1):
 
 # option 2: manually get info
 elif(option == 2):
+
+    regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+    
     print("Ok! It's time for you to input the participants' information!")
     for i in range(1, count + 1):
         name = str(input(f'Enter participant the name of participant {i}: '))
         names.append(name)
         x = 0
         while(x == 0):
-            email = str(input(f'Enter participant the email of participant {i}: '))
-            if (email[-4:] == '.com'):
+            email = str(input(f'Enter the email of participant {i}: '))
+            if(re.search(regex, email)):
                 emails.append(email)
                 x = 1
             else:
